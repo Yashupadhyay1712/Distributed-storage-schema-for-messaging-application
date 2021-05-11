@@ -1,0 +1,12 @@
+{
+	"op_type":"update",
+	"msg_id":"1223",
+	"isGroup":"true",
+	"uid1":"user1",
+	"uid2":"group1"
+}
+
+{
+	"uid":"user1",
+	"ack":"ok"
+}

@@ -1,0 +1,9 @@
+{
+	"isGroup":"true",
+	"uid":"user1"
+}
+
+{
+	"uid":"user1",
+	"groups":["group1", "group2", "group3"]
+}

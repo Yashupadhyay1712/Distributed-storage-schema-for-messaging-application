@@ -1,0 +1,14 @@
+{
+	"uid1":"user1",
+	"uid2":"user2",
+	"msg":"text"
+}
+
+{
+	"ack":"ok",
+	"msg_id":"123",
+	"timestamp":"123456787",
+	"uid1":"user1",
+	"uid2":"user2",
+	"msg":"text"
+}

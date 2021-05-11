@@ -1,0 +1,17 @@
+{
+	"op_type":"delete",
+	"uid1":"user1",
+	"uid2":"group1",
+	"isGroup":"true",
+}
+
+
+{
+	"uid":"user1",
+	"msgs":{
+		"uid2":"user1",
+		"msg":"text",
+		"timestamp":"123456787654",
+		"msg_id":"123"
+	}
+}

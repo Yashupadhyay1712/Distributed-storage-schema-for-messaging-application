@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<!-- <meta http-equiv="refresh" content="30" /> -->
+	<style type="text/css">
+		body, html {
+		  width: 100%;
+		  height: 100%;
+		  margin: 0;
+		  background-image: url('/static/bg_img4.jpg');
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		}
+
+		.container {
+		  width: 100%;
+		  height: 100%;
+		}
+
+		.left_pane {
+		    width: 35%;
+		    height: 80%;
+		    float: left;
+		    /*background-color: #64d09b;*/
+		    border-collapse: collapse;
+		}
+
+		.right_top_pane {
+		  width: 65%;
+		  height: 50%;
+		  position: relative;
+		  float: right;
+		  /*background-color: #b6f9d8;*/
+		  /*background-color: #dfff00;*/
+		  border-collapse: collapse;
+		}
+
+		.right_bottom_pane {
+		  width: 65%;
+		  height: 10%;
+		  position: relative;
+		  float: right;
+		  /*background-color: royalblue;*/
+		  /*background-color: #38b369;*/
+		  border-collapse: collapse;
+		}
+
+		.right_bottom_pane1 {
+		  width: 65%;
+		  height: 10%;
+		  position: relative;
+		  float: right;
+		  /*background-color: royalblue;*/
+		  /*background-color: #38b369;*/
+		  border-collapse: collapse;
+		}
+
+		.right_bottom_pane2 {
+		  width: 65%;
+		  height: 10%;
+		  position: relative;
+		  float: right;
+		  /*background-color: royalblue;*/
+		  /*background-color: #38b369;*/
+		  border-collapse: collapse;
+		}
+
+		.toppane {
+		  width: 100%;
+		  height: 10%;
+		  border-collapse: collapse;
+		  /*background-color: lightgreen;*/
+		}
+
+		.bottompane {
+		  width: 100%;
+		  height: 10%;
+		  float: left;
+		  border-collapse: collapse;
+		  /*background-color: #4da6ff;*/
+		  /*background-color: #b8c2ab;*/
+		}
+
+		.logout {
+		  width: 30%;
+		  font-size: 25px;
+		  border-radius: 12px;
+		  margin-left: 10px;
+		  /*background-color: #fff;*/
+		}
+
+		.logout:hover {
+			background-color: #888;
+		}
+
+		.btn {
+		  /*width: 30%;*/
+		  font-size: 20px;
+		  border-radius: 12px;
+		  margin-left: 10px;
+		  /*background-color: #fff;*/
+		}
+
+		.btn:hover {
+			background-color: #888;
+		}
+
+		input[type=text], input[type=password] {   
+		  width: 100%;   
+		  margin: 8px 0;  
+		  padding: 12px 20px;   
+		  display: inline-block;   
+		  border: 2px solid green;   
+		  box-sizing: border-box;   
+		} 
+
+		.vertical-menu {
+		  width: 200px;
+		  height: 150px;
+		  overflow-y: auto;
+		}
+
+		.vertical-menu a {
+		  /*background-color: #eee;*/
+		  /*color: black;*/
+		  display: block;
+		  padding: 12px;
+		  text-decoration: none;
+		}
+
+		.vertical-menu a:hover {
+		  background-color: #ccc;
+		  color: black;
+		}
+
+		.vertical-menu a.active {
+		  background-color: #4CAF50;
+		  color: black;
+		}
+
+		.vertical-menu2 {
+		  width: 190px;
+		  height: 160px;
+		  overflow-y: auto;
+		  scroll-behavior: smooth;
+		}
+
+		.vertical-menu2 a {
+		  background-color: #eee;
+		  /*color: black;*/
+		  display: block;
+		  padding: 12px;
+		  text-decoration: none;
+		}
+
+		.vertical-menu2 a:hover {
+		  background-color: #ccc;
+		  color: black;
+		}
+
+		.vertical-menu2 a.active {
+		  background-color: #4CAF50;
+		  color: black;
+		}
+
+		/*h1, h2, h3, h4, h5, h6, b{
+			color:white;
+		}*/
+
+		a {color:#FFF;}         /* Unvisited link  */
+		a:visited {color:#FFF;} /* Visited link    */
+		a:hover {color:#FFF;}   /* Mouse over link */
+		a:active {color:#FFF;}  /* Selected link   */
+
+	</style>
+</head>
+<body>
+	<div class="container" style="font-size: 20px;color:white; background-color:black;opacity: 0.7;">
+	    <div class="toppane">
+	    	<table width="100%">
+	    		<tr>
+	    			<td>
+	    				<h2 style="margin-left: 20px;"><b><i><font color="lightgreen">{{uid}}</i></b></font> dashboard</h2>
+	    			</td>
+	    			<td style="text-align:center">
+	    				<form action="{{ url_for('logout', user_id = uid) }}" method="POST">
+						    <button class="logout">Logout</button>
+						</form>
+	    			</td>
+	    		</tr>
+	    	</table>
+	    </div>
+
+	    <div class="left_pane">
+	    	<table width="100%">
+	    		<tr>
+	    			<td style="text-align:center">
+	    				<form action="{{ url_for('fetch_users', user_id = uid) }}" method="POST">
+						    <button class="btn" style="width:50%;margin-top: 10px;">
+						    <div style="padding: 10px;">
+						    	<b>Fetch Users</b>
+							</div>
+						    </button>
+						</form>
+						<div id="bottom" class="vertical-menu" style="width:100%">
+							<!-- <a href="#">link</a> -->
+						    {% for user in users %}
+								<a href="{{ url_for('update_cid', user_id = uid, chat_id = user) }}" >{{user}}</a>
+								<!-- <a href="#">{{user}}</a> -->
+							{% endfor %}
+						</div>
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td style="text-align:center">
+	    				<form action="{{ url_for('fetch_groups', user_id = uid) }}" method="POST">
+						    <button class="btn" style="width:50%;margin-top: 10px;">
+						    <div style="padding: 10px;">
+						    	<b>Fetch Groups</b>
+							</div>
+						    </button>
+						</form>
+						<div class="vertical-menu" style="width:100%">
+							<!-- <a href="#">link</a> -->
+						    {% for group in groups %}
+								<a href="{{ url_for('update_cid', user_id = uid, chat_id = group) }}" >{{group}}</a>
+								<!-- <a href="#">{{group}}</a> -->
+							{% endfor %}
+						</div>
+	    			</td>
+	    		</tr>
+	    	</table>
+			
+	    </div>
+
+	    <div class="right_top_pane">
+	    	<table style="width:100%;">
+	    		<tr>
+	    			<td>
+			
+			<table>
+				<tr>
+					<td colspan="2">
+						<label style="width:100%"> Chat Window</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2><b><i><font color="lightgreen">{{cid}}</font></i></b></h2>
+					</td>
+					<td>
+						<button class="btn" type="submit" onClick="window.location.reload();"> Refresh </button>
+					</td>
+					<td>
+						<form action="{{ url_for('fetch_msg', user_id = uid) }}" method="POST">
+							<button class="btn" type="submit" onClick="window.location.reload();"> Fetch Msgs </button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			
+				<table width="100%">
+					<tr>
+			    				<td width="60%">
+			    					<label><b>Message</b></label>
+			    				</td>
+			    				<td width="10%">
+			    					<label><b>Sender</b></label>
+			    				</td>
+			    				<td width="20%">
+			    					<label><b>Time Stamp</b></label>
+			    				</td>
+			    				<td width="10%">
+			    					<label><b>Msg Id</b></label>
+			    				</td>
+			    	</tr>
+			    </table>
+				<!-- <a href="#">link</a> -->
+				<div class="vertical-menu2" id="chat-window" style="width:100%;">
+				<table border="1px" width="100%">
+			    {% for msg in msgs %}
+			    	<!-- <div> -->
+			    			<tr>
+			    				<td width="60%">
+			    					<label>{{msgs[msg]['text']}}</label>
+			    				</td>
+			    				<td width="10%">
+			    					<label>{{msgs[msg]['uid']}}</label>
+			    				</td>
+			    				<td width="20%">
+			    					<label>{{msgs[msg]['time_stamp']}}</label>
+			    				</td>
+			    				<td width="10%">
+			    					<label>{{msg}}</label>
+			    				</td>
+			    				<!-- <td width="20%" style="text-align:center">
+			    					
+			    					<div id="myForm" hidden>
+									  <form action="{{ url_for('update_msg', user_id = uid, msg_id = msg) }}" method="POST">
+									    <label for="psw"><b>Update Message</b></label>
+									    <input type="text" name="updated_msg">
+									    <button type="submit" class="btn">Update</button>
+									  </form>
+									</div>
+
+									<button id="update" class="btn" onclick="btnUpdate()">Update</button>
+
+			    				</td>
+			    				<td width="20%" style="text-align:center">
+			    					<form action="{{ url_for('update_msg', user_id = uid, msg_id = msg) }}" method="POST">
+			    						<button class="btn">Delete</button>	
+			    					</form>
+			    				</td> -->
+			    			</tr>
+			    	<!-- </div> -->
+				{% endfor %}
+				</table>
+			</div>
+			<script>
+		        chatWindow = document.getElementById('chat-window'); 
+				var xH = chatWindow.scrollHeight; 
+				chatWindow.scrollTo(0, xH);
+		    </script>
+		    <!-- <script>
+				var flag=1;
+
+				function btnUpdate() {
+					if(flag==0){
+				  		document.getElementById("myForm").style.display = "None";
+				        document.getElementById("update").innerHTML = "Update";
+				        flag=1;
+				    }
+				    else{
+				    	document.getElementById("myForm").style.display = "Block";
+				        document.getElementById("update").innerHTML = "Cancel";
+				        flag=0;
+				    }
+				}
+			</script> -->
+		    		</td>
+	    		</tr>
+	    	</table>
+	    </div>
+
+
+	    <div class="right_bottom_pane">
+	    	<table style="width:100%;"> <!-- border="1px" -->
+	    		<tr>
+	    			<td>
+	    	<form action="{{ url_for('send', user_id = uid) }}" method="POST">
+	    		<table width="100%">
+		    		<tr>
+		    			<td width="70%">
+		    				<input type="text" name="typed_msg" id="typed_msg" placeholder="Type a message..."/>
+		    			</td>
+		    			<td width="20%" style="text-align:center">
+							<button class="btn">Send</button>
+		    			</td>
+		    			<td width="10%">
+		    				
+		    			</td>
+		    		</tr>
+		    	</table>
+			</form>
+					</td>
+	    		</tr>
+	    	</table>
+	    </div>
+
+	    <div class="right_bottom_pane1">
+	    	<table style="width:100%;">
+	    		<tr>
+	    			<td>
+	    	<form action="{{ url_for('update_msg', user_id = uid) }}" method="POST">
+	    		<table width="100%">
+		    		<tr>
+		    			<td width="20%">
+		    				<input type="text" name="msg_id" id="msg_id" placeholder="Type a msg id..."/>
+		    			</td>
+		    			<td width="50%">
+		    				<input type="text" name="updated_msg" id="updated_msg" placeholder="Type a message..."/>
+		    			</td>
+		    			<td width="20%" style="text-align:center">
+							<button type="submit" class="btn">Update</button>
+		    			</td>
+		    			<td width="10%">
+		    				
+		    			</td>
+		    		</tr>
+		    	</table>
+			</form>
+					</td>
+	    		</tr>
+	    	</table>
+	    </div>
+	    <div class="right_bottom_pane2">
+	    	<table style="width:100%;">
+	    		<tr>
+	    			<td>
+	    	<form action="{{ url_for('delete_msg', user_id = uid) }}" method="POST">
+	    		<table width="100%">
+		    		<tr>
+		    			<td width="20%">
+		    				<input type="text" name="msg_id" id="msg_id" placeholder="Type a msg id..."/>
+		    			</td>
+		    			<td width="20%" style="text-align:center">
+							<button type="submit" class="btn">Delete</button>
+		    			</td>
+		    			<td width="60%">
+		    				
+		    			</td>
+		    		</tr>
+		    	</table>
+			</form>
+					</td>
+	    		</tr>
+	    	</table>
+	    </div>
+
+	    <!-- <div class="left_bottom_pane">
+			
+    	</div> -->
+    	<div class="bottompane">
+	    	<!-- <table border="1px" width="100%">
+	    		<tr>
+	    			<td> -->
+	    				<h3 style="margin-left: 20px;"> &#169; Made by Shubham, Shanu, Shobhit, Yash and Harshit</h3>
+	    			<!-- </td>
+	    		</tr>
+	    	</table> -->
+	    </div>
+	</div>
+</body>
+</html>

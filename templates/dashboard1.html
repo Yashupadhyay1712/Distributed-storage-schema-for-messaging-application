@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+</head>
+<style type="text/css">
+
+.test {
+  width: 10%;
+  display: inline;
+  overflow: auto;
+  white-space: nowrap;
+  margin: 0px auto;
+  float: right;
+}
+
+.vertical-menu {
+  width: 200px;
+  height: 150px;
+  overflow-y: auto;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.user{
+  height: 100%;
+  width: 100%;
+  /*position: fixed;*/
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  align-content: center;
+}
+
+.group {
+  height: 100%;
+  width: 100%;
+  /*position: fixed;*/
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  align-content: center;
+}
+
+.message{
+  height: 100%;
+  width: 100%;
+  /*position: fixed;*/
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  align-content: center;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #fff;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #fff;
+}
+
+</style>
+
+<body>
+	<div style="align-content:center">
+
+	<div>
+		<h1> Dashboard {{uid}}
+		<div class="test">
+			<a href="/logout"><button> Logout </button></a>
+		</div>
+		</h1>
+	</div>
+	<table border="1px" style="width:100%">
+		<tr>
+			<td>
+				<div class="user left">
+					<form action="/fetch_users/" method="post">
+					    <button style="width:100%"><h3>Fetch Users</h3></button>
+					</form>
+					<div class="vertical-menu" style="width:100%">
+						<!-- <a href="#">link</a> -->
+					    {% for user in users %}
+							<a href="#">{{user}}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</td>
+			<td rowspan="2">
+				<div class="message right">
+					<button style="width:100%"><h3>Message Window</h3></button>
+					<div class="vertical-menu" style="width:100%">
+					  <a href="#">Link 1</a>
+					  <a href="#">Link 2</a>
+					  <a href="#">Link 3</a>
+					  <a href="#">Link 4</a>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="group left">
+					<form action="/fetch_groups/" method="post">
+					    <button style="width:100%"><h3>Fetch Groups</h3></button>
+					</form>
+					<div class="vertical-menu" style="width:100%">
+						<!-- <a href="#">link</a> -->
+					    {% for group in groups %}
+							<a href="#">{{group}}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	</div>
+</body>
+</html>

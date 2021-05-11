@@ -1,0 +1,12 @@
+{
+	"op_type":"delete",
+	"isGroup":"false",
+	"uid1":"user1",
+	"uid2":"user2",
+	"msg_id":"1223",
+}
+
+{
+	"uid":"user1",
+	"ack":"ok"
+}
